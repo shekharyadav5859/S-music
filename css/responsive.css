@@ -1,0 +1,49 @@
+/* teblet responsive style */
+@media (max-width: 1250px ) and (min-width:750px) {
+
+  .applogo{
+    height:65px;
+    font-size:45px;
+     margin-top:8px;
+  }
+  #logo{
+    heigth:68px;
+    width:70px;
+}
+
+.main{
+     height: 80vh;
+    background: #161616;
+    display:grid;
+    grid-template-columns:15% 85%;
+    margin-top:5px;
+    gap:10px;
+}
+}
+
+
+
+
+
+/* mobile responsive style */
+
+@media (max-width:750px) and (min-width:300px){
+ .applogo{
+    height:45px;
+    font-size:30px;
+     margin-top:7px;
+ }
+#logo{
+    heigth:47px;
+    width:50px;
+}
+
+.main{
+      height: 80vh;
+    background: #242323;
+    display:grid;
+    grid-template-columns:10% 90%;
+    margin-top:5px;
+    gap:3px;
+}
+}
