@@ -41,3 +41,24 @@ width:120px;
    
     
 }
+
+
+.left{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    padding-top: 20px;
+    
+   
+}
+
+.left i{
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+   
+}
+
+.left i:hover{
+    color: #bf2dbf;
+}
