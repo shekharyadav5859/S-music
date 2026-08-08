@@ -35,9 +35,10 @@ width:120px;
      height: 80vh;
     background: #161616;
     display:grid;
-    grid-template-columns:20% 80%;
+    grid-template-columns:10% 90%;
     margin-top:5px;
-    gap:10px;
+    gap:2px;
+    
    
     
 }
@@ -46,19 +47,127 @@ width:120px;
 .left{
     display: flex;
     flex-direction: column;
-    gap: 25px;
     padding-top: 20px;
-    
+    justify-content:space-between ;
+    align-items: center;
    
 }
 
+.lefticon {
+    height: 50px;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    transition: 0.2s;
+}
+
+.lefticon:hover {
+    border: 2px solid #332f33;
+    background-color: #332f33;
+}
 .left i{
-    font-size: 24px;
+    font-size: 25px;
     color: white;
     cursor: pointer;
+    background-color: transparent;
    
 }
 
 .left i:hover{
+   
+   
+    color: #e40dd6;
+}
+
+
+.right {
+   
+  
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.song-box {
+    width: 30%;
+    padding: 15px;
+    background-color: #181818;
+    border-radius: 15px;
+}
+
+.song-box img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+
+.bottom {
+    height: 10vh;
+    width: 100%;
+    background: linear-gradient(45deg, #111827, #3c186e);
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 25px;
+    box-sizing: border-box;
+
+    border-top: 1px solid #3b3b3b;
+    box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Song information */
+.now-playing {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.now-playing img {
+    height: 55px;
+    width: 55px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.now-playing h4 {
+    margin: 0;
+    color: white;
+}
+
+.now-playing p {
+    margin: 4px 0 0;
+    color: #aaa;
+    font-size: 13px;
+}
+
+/* Controls */
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.controls i {
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.controls .play {
+    font-size: 40px;
     color: #bf2dbf;
+}
+
+/* Volume */
+.volume i {
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
 }
