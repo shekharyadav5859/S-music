@@ -58,56 +58,143 @@
 
 
 
-/* mobile responsive style */
+@media (max-width: 749px) and (min-width: 300px) {
 
-@media (max-width:749px) and (min-width:300px){
- .applogo{
-    height:10vh;
-    font-size:30px;
-     margin-top:1px;
- }
-#input{
-    height: 40px;
-  }
-  #serach{
-    height: 40px;
-  }
+    .applogo {
+        height: 70px;
+    }
 
-#logo{
-    height:47px;
-    width:50px;
-}
+    .imglogo {
+        width: 25%;
+    }
 
-.main{
-      height: 90vh;
-    background: #242323;
-    display:grid;
-    grid-template-columns:15% 85%;
-    margin-top:5px;
-    gap:1px;
-}
-.lefticon{
-   height: 30px;
-  width: 30px;
-  border-radius: 5px;
-}
+    #logo {
+        width: 50px;
+        height: 50px;
+    }
 
-       .right {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    column-gap: 8px;
-    row-gap: 10px;
-    padding: 5px;
-}
+    .inputbox {
+        margin-right: 10px;
+    }
 
-.song-box {
-    width: 100%;
-    height: 430px;
-    margin: 0;
-    box-sizing: border-box;
-}
+    #input {
+        width: 80%;
+        height: 40px;
+        font-size: 13px;
+    }
+
+    #serach {
+        font-size: 35px;
+    }
 
 
-   
- 
+    .main {
+        height: calc(100vh - 70px);
+
+        grid-template-columns: 65px 1fr;
+    }
+
+
+    .lefticon {
+        width: 45px;
+        height: 45px;
+    }
+
+    .left i {
+        font-size: 22px;
+    }
+
+
+    .right {
+        padding: 15px 10px 120px;
+
+        grid-template-columns: 1fr;
+
+        gap: 15px;
+    }
+
+
+    .music-heading {
+        height: 50px;
+    }
+
+    .music-heading h1 {
+        font-size: 20px;
+    }
+
+    .music-heading button {
+        padding: 7px 10px;
+        font-size: 12px;
+    }
+
+
+    .song-box {
+        width: 100%;
+        height: 330px;
+    }
+
+    .imgsong {
+        height: 205px;
+    }
+
+
+    /* MOBILE PLAYER */
+
+    .music-player {
+        left: 5px;
+        right: 5px;
+        bottom: 5px;
+
+        height: 70px;
+
+        padding: 8px 10px;
+    }
+
+    .now-song {
+        width: 55%;
+    }
+
+    .now-song img {
+        width: 48px;
+        height: 48px;
+    }
+
+    .now-song h3 {
+        font-size: 12px;
+    }
+
+    .now-song p {
+        font-size: 10px;
+    }
+
+    .now-song > i {
+        display: none;
+    }
+
+    .player-center {
+        width: 45%;
+    }
+
+    .player-buttons {
+        gap: 10px;
+    }
+
+    .player-buttons > i:first-child,
+    .player-buttons > i:last-child {
+        display: none;
+    }
+
+    .main-play {
+        width: 38px;
+        height: 38px;
+    }
+
+    .progress {
+        display: none;
+    }
+
+    .player-right {
+        display: none;
+    }
+
 }
