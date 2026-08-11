@@ -786,39 +786,34 @@ body {
 
 
 
+
 /* Play button */
-.imgsong .ri-play-circle-fill {
-    position: absolute;
-    right: 15px;
-    bottom: 15px;
-    width: 52px;
-    height: 52px;
-    border: none;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: 0.3s;
-    font-size: 28px;
-
-    font-size: 55px;
-    color: white;
-
-
-   
-
-    opacity: 0;
-    cursor: pointer;
-
-    transition: 0.3s;
+.imgsong .ri-play-circle-fill,
+.imgsong .ri-pause-circle-fill {
+position: absolute;
+right: 15px;
+bottom: 15px;
+width: 52px;
+height: 52px;
+border: none;
+border-radius: 50%;
+display: flex;
+justify-content: center;
+align-items: center;
+cursor: pointer;
+opacity: 0;
+transform: translateY(10px);
+transition: 0.3s;
+font-size: 28px;
+font-size: 55px;
+color: white;
+opacity: 0;
+cursor: pointer;
+transition: 0.3s;
 }
 
-
-/* Song box hover */
-.song-box:hover .ri-play-circle-fill {
+.song-box:hover .ri-play-circle-fill,
+.song-box:hover .ri-pause-circle-fill {
     opacity: 1;
 }
 

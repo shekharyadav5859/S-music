@@ -1,6 +1,10 @@
 import { songData } from "../data/songbox.js";
 
+//rightBox
+
 let right = document.querySelector(".right");
+
+
 
 songData.forEach((element) => {
 //songBox
@@ -17,11 +21,43 @@ songData.forEach((element) => {
     imgSong.appendChild(img);
     songBox.appendChild(imgSong);
 
-  //playbutton
-  let play = document.createElement("i");
+//audio
+let audio = new Audio();
+
+function playSong(element) {
+    audio.src = element.song;
+    audio.play();
+}
+
+
+
+    //playButton
+
+
+
+let play = document.createElement("i");
+
 play.classList.add("ri-play-circle-fill");
 
-imgSong.appendChild(play); 
+imgSong.appendChild(play);
+
+play.addEventListener("click", () => {
+    console.log("clicked");
+    if(play.classList.contains("ri-play-circle-fill")){
+        play.classList.remove("ri-play-circle-fill");
+        play.classList.add("ri-pause-circle-fill");
+         playSong(element);
+    }
+    else{
+        play.classList.remove("ri-pause-circle-fill");
+        play.classList.add("ri-play-circle-fill");
+      audio.pause();
+    }
+});
+
+    
+
+
     
 // songName
 
@@ -108,6 +144,49 @@ more.addEventListener("click", (e) => {
 
 
 
+//----------------------------------botttomBox---------------------------------------------------------//
+
+songBox.addEventListener("click",()=>{
+    let img = document.querySelector("#bottomimg");
+    img.src = element.img;
+
+ //namesong
+ 
+let namebottom = document.querySelector("#bottomname");
+namebottom.innerText = element.songname;
+
+//singerbottom
+
+let singerbottom = document.querySelector("#singerbottom");
+singerbottom.innerText = element.singer;
+
+
+//endpoint
+let endpoint = document.querySelector("#endpoint");
+endpoint.innerText =element.duration;
+
+//durestion
+let progressvlaue =document.querySelector(".progress-bar");
+let progressBar = document.querySelector(".progress-bar");
+progressBar.addEventListener("click", (e) => {
+    let width = progressBar.clientWidth;
+    let clickX = e.offsetX;
+
+    audio.currentTime = (clickX / width) * audio.duration;
+});
+
+
+})
+
+
+
+
+
+
 songBox.appendChild(songBottom);
 right.appendChild(songBox);
 });
+
+
+
+//---------------------------------bottomBox-----------------------------------------//
