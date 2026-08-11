@@ -293,7 +293,7 @@ body {
 .song-box {
     width: 100%;
     height: 360px;
-
+     position: relative;
     box-sizing: border-box;
 
     border: 1px solid #292929;
@@ -676,3 +676,151 @@ body {
 
     border-radius: 10px;
 }
+
+.song-bottom i {
+    color: white;
+    cursor: pointer;
+}
+
+.song-bottom i.like {
+    color: #ff3b6b;
+}
+
+
+
+/* Song box */
+.song-box {
+    position: relative;
+}
+
+
+/* More icon */
+.song-bottom .ri-more-2-fill {
+    font-size: 22px;
+    cursor: pointer;
+    color: white;
+}
+
+
+/* More menu */
+.morediv {
+    display: none;
+
+    position: absolute;
+
+    right: 10px;
+    bottom: 50px;
+
+    width: 180px;
+
+    padding: 8px;
+
+    background: #17151c;
+
+    border: 1px solid #3b3545;
+    border-radius: 12px;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+
+    z-index: 999;
+}
+
+
+/* Menu open */
+.morediv.show {
+    display: block;
+}
+
+
+/* Menu option */
+.more-option {
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 0 10px;
+
+    border-radius: 8px;
+
+    color: #d5d2da;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+/* Icon */
+.more-option i {
+    font-size: 20px;
+    color: #b98cff;
+    background: transparent;
+}
+
+
+/* Text */
+.more-option span {
+    background: transparent;
+    font-size: 14px;
+}
+
+
+/* Hover */
+.more-option:hover {
+    background: #29232f;
+    color: white;
+}
+
+
+/* Icon hover */
+.more-option:hover i {
+    color: #d48cff;
+}
+
+.imgsong {
+    position: relative;
+}
+
+
+
+/* Play button */
+.imgsong .ri-play-circle-fill {
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+    width: 52px;
+    height: 52px;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: 0.3s;
+    font-size: 28px;
+
+    font-size: 55px;
+    color: white;
+
+
+   
+
+    opacity: 0;
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+
+/* Song box hover */
+.song-box:hover .ri-play-circle-fill {
+    opacity: 1;
+}
+
+
+
