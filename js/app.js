@@ -4,6 +4,10 @@ import { songData } from "../data/songbox.js";
 
 let right = document.querySelector(".right");
 
+// bottombutton
+let mainplay = document.querySelector(".main-play");
+let bottomPlay = document.querySelector("#buttomplay");
+
 
 
 songData.forEach((element) => {
@@ -42,20 +46,24 @@ play.classList.add("ri-play-circle-fill");
 imgSong.appendChild(play);
 
 play.addEventListener("click", () => {
-    console.log("clicked");
+   
     if(play.classList.contains("ri-play-circle-fill")){
         play.classList.remove("ri-play-circle-fill");
+        bottomPlay.classList.remove("ri-play-fill");
         play.classList.add("ri-pause-circle-fill");
+        bottomPlay.classList.add("ri-pause-fill");
          playSong(element);
     }
     else{
         play.classList.remove("ri-pause-circle-fill");
+        bottomPlay.classList.remove("ri-pause-fill");
         play.classList.add("ri-play-circle-fill");
+         bottomPlay.classList.add("ri-play-fill");
       audio.pause();
     }
 });
 
-    
+   
 
 
     
@@ -175,6 +183,28 @@ progressBar.addEventListener("click", (e) => {
     audio.currentTime = (clickX / width) * audio.duration;
 });
 
+//playpush
+// let mainplay = document.querySelector(".main-play");
+// let bottomPlay = document.querySelector("#buttomplay");
+
+
+mainplay.addEventListener("click", () => {
+    if(play.classList.contains("ri-play-circle-fill")){
+         play.classList.remove("ri-play-circle-fill");
+         bottomPlay.classList.remove("ri-play-fill");
+         play.classList.add("ri-pause-circle-fill");
+         bottomPlay.classList.add("ri-pause-fill");
+           playSong(element);
+    }
+    else{
+        play.classList.remove("ri-pause-circle-fill");
+        bottomPlay.classList.remove("ri-pause-fill");
+         play.classList.add("ri-play-circle-fill");
+         bottomPlay.classList.add("ri-play-fill");
+          audio.pause();
+
+    }
+});
 
 })
 
