@@ -12,6 +12,15 @@ let songcheck = false;
 let mainplay = document.querySelector(".main-play");
 let bottomPlay = document.querySelector("#buttomplay");
 
+//audio
+let audio = new Audio();
+let currentSong = null;
+let currentPlayIcon = null;
+
+function playSong(element) {
+    audio.src = element.song;
+    audio.play();
+}
 
 
 songData.forEach((element) => {
@@ -29,13 +38,7 @@ songData.forEach((element) => {
     imgSong.appendChild(img);
     songBox.appendChild(imgSong);
 
-//audio
-let audio = new Audio();
 
-function playSong(element) {
-    audio.src = element.song;
-    audio.play();
-}
 
 
 
@@ -49,69 +52,8 @@ play.classList.add("ri-play-circle-fill");
 
 imgSong.appendChild(play);
 
-play.addEventListener("click", ()=>{
-
-    let alreadyPlaying = false;
-
-for (let i = 0; i < songData.length; i++) {
-
-    if (songData[i].play === true) {
-
-        alreadyPlaying = true;
-
-        songData[i].play = false;
-
-        audio.pause();
-
-        // Purane song ka icon play karo
-        play.classList.remove("ri-pause-circle-fill");
-        play.classList.add("ri-play-circle-fill");
-
-        bottomPlay.classList.remove("ri-pause-fill");
-        bottomPlay.classList.add("ri-play-fill");
-    }
-}
-
-// Ab current song play karo
-if (alreadyPlaying || !element.play) {
-
-    element.play = true;
-
-    play.classList.remove("ri-play-circle-fill");
-    play.classList.add("ri-pause-circle-fill");
-
-    bottomPlay.classList.remove("ri-play-fill");
-    bottomPlay.classList.add("ri-pause-fill");
-
-    playSong(element);
-}
-})
-   
-//     if(play.classList.contains("ri-play-circle-fill")){
-       
-//         play.classList.remove("ri-play-circle-fill");
-//         bottomPlay.classList.remove("ri-play-fill");
-//         play.classList.add("ri-pause-circle-fill");
-//         bottomPlay.classList.add("ri-pause-fill");
-//  playSong(element);
-//      element.play =true;
 
 
-//     }
-    // else{
-    //     play.classList.remove("ri-pause-circle-fill");
-    //     bottomPlay.classList.remove("ri-pause-fill");
-    //     play.classList.add("ri-play-circle-fill");
-    //      bottomPlay.classList.add("ri-play-fill");
-    //   audio.pause();
-      
-    // }
-
-
-
-
-    
-// songName
 
 let songtittle = document.createElement("div");
 songtittle.classList.add("song-title");
@@ -191,14 +133,6 @@ more.addEventListener("click", (e) => {
 
 
 
-//-----------------------------------playsongbox-------------------------------------------------------------//
-// songBox.addEventListener("click", () => {
-
-//     right.appendChild(rightInbox);
-
-//     click(element);
-
-// });
 
 
 
@@ -224,40 +158,49 @@ singerbottom.innerText = element.singer;
 let endpoint = document.querySelector("#endpoint");
 endpoint.innerText =element.duration;
 
-//durestion
-let progressvlaue =document.querySelector(".progress-bar");
+// duretion
+
+let progressvlaue = document.querySelector(".progress-value");
 let progressBar = document.querySelector(".progress-bar");
+
 progressBar.addEventListener("click", (e) => {
     let width = progressBar.clientWidth;
     let clickX = e.offsetX;
+    console.log(width);
+    console.log(clickX);
 
     audio.currentTime = (clickX / width) * audio.duration;
 });
 
+audio.addEventListener("timeupdate", () => {
+    let percent = (audio.currentTime / audio.duration) * 100;
 
-
-
-mainplay.addEventListener("click", () => {
-    if(songcheck ===false){
-
-
-         play.classList.remove("ri-play-circle-fill");
-         bottomPlay.classList.remove("ri-play-fill");
-         play.classList.add("ri-pause-circle-fill");
-         bottomPlay.classList.add("ri-pause-fill");
-           playSong(element);
-           songcheck = true
-    }
-    else{
-        play.classList.remove("ri-pause-circle-fill");
-        bottomPlay.classList.remove("ri-pause-fill");
-         play.classList.add("ri-play-circle-fill");
-         bottomPlay.classList.add("ri-play-fill");
-          audio.pause();
-          songcheck=false;
-
-    }
+    progressvlaue.style.width = percent + "%";
 });
+
+//songPlay and pause
+ if (currentSong && currentSong !== element) {
+        audio.pause();
+
+        if (currentPlayIcon) {
+            currentPlayIcon.classList.remove("ri-pause-circle-fill");
+            currentPlayIcon.classList.add("ri-play-circle-fill");
+        }
+    }
+     currentSong = element;
+    currentPlayIcon = play;
+
+
+
+    // Naya song play
+    playSong(element);
+
+    // Current icon
+    play.classList.remove("ri-play-circle-fill");
+    play.classList.add("ri-pause-circle-fill");
+
+    bottomPlay.classList.remove("ri-play-fill");
+    bottomPlay.classList.add("ri-pause-fill");
 
 })
 
@@ -270,6 +213,30 @@ songBox.appendChild(songBottom);
 right.appendChild(songBox);
 });
 
+//mainplay
+mainplay.addEventListener("click", () => {
+
+    if (!currentSong) return;
+
+    if (audio.paused) {
+        audio.play();
+
+        currentPlayIcon.classList.remove("ri-play-circle-fill");
+        currentPlayIcon.classList.add("ri-pause-circle-fill");
+
+        bottomPlay.classList.remove("ri-play-fill");
+        bottomPlay.classList.add("ri-pause-fill");
+
+    } else {
+        audio.pause();
+
+        currentPlayIcon.classList.remove("ri-pause-circle-fill");
+        currentPlayIcon.classList.add("ri-play-circle-fill");
+
+        bottomPlay.classList.remove("ri-pause-fill");
+        bottomPlay.classList.add("ri-play-fill");
+    }
+});
 
 
 //---------------------------------bottomBox-----------------------------------------//

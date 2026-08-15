@@ -144,7 +144,7 @@
     .music-player {
         left: 5px;
         right: 5px;
-        bottom: 5px;
+        bottom: 4px;
 
         height: 70px;
 
@@ -196,15 +196,25 @@
         display: none;
     }
 
-    #startpoint{
+    #startpoint ,#endpoint{
         display:none;
 
     }
 
-    #endpoint{
-        display: none;
-    }
+   
 .progress-bar{
-    
+position: fixed;
+left:16px;
+right:7px;
+bottom:71px;
+ border-radius: 16px;
+ width:90%;
+  box-shadow: 0 0 25px rgba(140, 20, 190, 0.15);
+background-color: #6f6969;
+
+
+}
+.progress-value {
+    background-color: aliceblue;
 }
 }
