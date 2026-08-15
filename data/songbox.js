@@ -7,6 +7,7 @@ export let songData = [
         singer: "Kumar Sanu, Alka Yagnik",
         duration: "4:41",
         link:false,
+        play:false,
         },
 
          {
@@ -17,6 +18,7 @@ export let songData = [
         singer: "Kumar Sanu, Alka Yagnik",
         duration: "4:41",
          link:false,
+        play:false,
         },
 
          {
@@ -27,6 +29,7 @@ export let songData = [
         singer: "Altamash Faridi, Arijit Singh, Shreya Ghoshal, Shadab Faridi",
         duration: "4:07",
          link:false,
+        play:false,
         },
 
         {
@@ -37,6 +40,7 @@ export let songData = [
         singer: "Kumar Sanu, Alka Yagnik",
         duration: "4:41",
          link:false,
+          play:false,
         },
 
         {
@@ -47,6 +51,7 @@ export let songData = [
         singer: "Kumar Sanu, Alka Yagnik",
         duration: "4:41",
          link:false,
+          play:false,
 
         },
 
@@ -58,6 +63,7 @@ export let songData = [
         singer: "Kumar Sanu, Alka Yagnik",
         duration: "4:41",
          like:false,
+          play:false,
         },
 
 
@@ -69,6 +75,7 @@ export let songData = [
         singer: "Kumar Sanu, Alka Yagnik",
         duration: "4:41",
          like:false,
+          play:false,
         },
 
 

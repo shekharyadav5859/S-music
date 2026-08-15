@@ -40,7 +40,8 @@
     grid-template-columns: repeat(2, 1fr);
     column-gap: 8px;
     row-gap: 10px;
-    padding: 5px;
+    padding-right: 2px;
+    margin:0px 2px 0px 2px;
 }
 
 .song-box {
@@ -189,12 +190,21 @@
         height: 38px;
     }
 
-    .progress {
-        display: none;
-    }
+   
 
     .player-right {
         display: none;
     }
 
+    #startpoint{
+        display:none;
+
+    }
+
+    #endpoint{
+        display: none;
+    }
+.progress-bar{
+    
+}
 }

@@ -1,8 +1,12 @@
 import { songData } from "../data/songbox.js";
+import { rightInbox } from "./player.js";
+import { click } from "./player.js";
+
 
 //rightBox
 
 let right = document.querySelector(".right");
+let songcheck = false;
 
 // bottombutton
 let mainplay = document.querySelector(".main-play");
@@ -45,25 +49,65 @@ play.classList.add("ri-play-circle-fill");
 
 imgSong.appendChild(play);
 
-play.addEventListener("click", () => {
-   
-    if(play.classList.contains("ri-play-circle-fill")){
-        play.classList.remove("ri-play-circle-fill");
-        bottomPlay.classList.remove("ri-play-fill");
-        play.classList.add("ri-pause-circle-fill");
-        bottomPlay.classList.add("ri-pause-fill");
-         playSong(element);
-    }
-    else{
-        play.classList.remove("ri-pause-circle-fill");
-        bottomPlay.classList.remove("ri-pause-fill");
-        play.classList.add("ri-play-circle-fill");
-         bottomPlay.classList.add("ri-play-fill");
-      audio.pause();
-    }
-});
+play.addEventListener("click", ()=>{
 
+    let alreadyPlaying = false;
+
+for (let i = 0; i < songData.length; i++) {
+
+    if (songData[i].play === true) {
+
+        alreadyPlaying = true;
+
+        songData[i].play = false;
+
+        audio.pause();
+
+        // Purane song ka icon play karo
+        play.classList.remove("ri-pause-circle-fill");
+        play.classList.add("ri-play-circle-fill");
+
+        bottomPlay.classList.remove("ri-pause-fill");
+        bottomPlay.classList.add("ri-play-fill");
+    }
+}
+
+// Ab current song play karo
+if (alreadyPlaying || !element.play) {
+
+    element.play = true;
+
+    play.classList.remove("ri-play-circle-fill");
+    play.classList.add("ri-pause-circle-fill");
+
+    bottomPlay.classList.remove("ri-play-fill");
+    bottomPlay.classList.add("ri-pause-fill");
+
+    playSong(element);
+}
+})
    
+//     if(play.classList.contains("ri-play-circle-fill")){
+       
+//         play.classList.remove("ri-play-circle-fill");
+//         bottomPlay.classList.remove("ri-play-fill");
+//         play.classList.add("ri-pause-circle-fill");
+//         bottomPlay.classList.add("ri-pause-fill");
+//  playSong(element);
+//      element.play =true;
+
+
+//     }
+    // else{
+    //     play.classList.remove("ri-pause-circle-fill");
+    //     bottomPlay.classList.remove("ri-pause-fill");
+    //     play.classList.add("ri-play-circle-fill");
+    //      bottomPlay.classList.add("ri-play-fill");
+    //   audio.pause();
+      
+    // }
+
+
 
 
     
@@ -147,7 +191,14 @@ more.addEventListener("click", (e) => {
 
 
 
+//-----------------------------------playsongbox-------------------------------------------------------------//
+// songBox.addEventListener("click", () => {
 
+//     right.appendChild(rightInbox);
+
+//     click(element);
+
+// });
 
 
 
@@ -183,18 +234,19 @@ progressBar.addEventListener("click", (e) => {
     audio.currentTime = (clickX / width) * audio.duration;
 });
 
-//playpush
-// let mainplay = document.querySelector(".main-play");
-// let bottomPlay = document.querySelector("#buttomplay");
+
 
 
 mainplay.addEventListener("click", () => {
-    if(play.classList.contains("ri-play-circle-fill")){
+    if(songcheck ===false){
+
+
          play.classList.remove("ri-play-circle-fill");
          bottomPlay.classList.remove("ri-play-fill");
          play.classList.add("ri-pause-circle-fill");
          bottomPlay.classList.add("ri-pause-fill");
            playSong(element);
+           songcheck = true
     }
     else{
         play.classList.remove("ri-pause-circle-fill");
@@ -202,6 +254,7 @@ mainplay.addEventListener("click", () => {
          play.classList.add("ri-play-circle-fill");
          bottomPlay.classList.add("ri-play-fill");
           audio.pause();
+          songcheck=false;
 
     }
 });
