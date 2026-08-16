@@ -1,8 +1,12 @@
 import { songData } from "../data/songbox.js";
-import { rightInbox } from "./player.js";
-import { click } from "./player.js";
+import { artists  } from "./player.js";
+import { home } from "./player.js";
 
 
+artists();
+home();
+
+console.log("hello");
 //rightBox
 
 let right = document.querySelector(".right");
@@ -166,8 +170,7 @@ let progressBar = document.querySelector(".progress-bar");
 progressBar.addEventListener("click", (e) => {
     let width = progressBar.clientWidth;
     let clickX = e.offsetX;
-    console.log(width);
-    console.log(clickX);
+   
 
     audio.currentTime = (clickX / width) * audio.duration;
 });
