@@ -1,5 +1,7 @@
-//home
+import { songData } from "../data/songbox.js";
 import { artistsdata } from "../data/artists.js";
+
+//home
 export function home(){
 let home=document.querySelector("#home");
 home.addEventListener("click" ,()=>{
@@ -22,11 +24,9 @@ export function artists() {
 
         right.innerHTML = "";
 
-        // let heading = document.createElement("h1");
-        // heading.innerText = "Artists";
-        // right.appendChild(heading);
+       
 
-        artistsdata.forEach((element) => {
+           artistsdata.forEach((element) => {
 
             let songBox = document.createElement("div");
             songBox.classList.add("song-box");
@@ -61,6 +61,138 @@ export function artists() {
             bio.innerText = element.bio;
             songBox.appendChild(bio);
 
+
+
+// click artists
+songBox.addEventListener("click", () => {
+
+    right.innerHTML = "";
+
+    let maindiv = document.createElement("div");
+    maindiv.classList.add("mainDiv");
+
+
+    // =====================
+    // Singer Background
+    // =====================
+
+    let singerBgDiv = document.createElement("div");
+    singerBgDiv.classList.add("singerbgdiv");
+
+    let singerImg = document.createElement("img");
+    singerImg.src = element.img;
+
+    singerBgDiv.appendChild(singerImg);
+
+
+    // =====================
+    // Singer Info
+    // =====================
+
+    let singerInfo = document.createElement("div");
+    singerInfo.classList.add("singerInfo");
+
+    let namediv = document.createElement("div");
+    namediv.classList.add("namediv");
+    namediv.innerText = element.name;
+
+    let singerbio = document.createElement("div");
+    singerbio.classList.add("singerbio");
+    singerbio.innerText = element.bio;
+
+    let singerG = document.createElement("div");
+    singerG.classList.add("singerG");
+    singerG.innerText = element.genre;
+
+    singerInfo.append(
+        namediv,
+        singerbio,
+        singerG
+    );
+
+    singerBgDiv.appendChild(singerInfo);
+
+
+    // =====================
+    // Singer Songs
+    // =====================
+
+    let singerNameFilter = element.name;
+
+    let result = songData.filter((song) =>
+        song.singer
+            .toLowerCase()
+            .includes(singerNameFilter.toLowerCase())
+    );
+
+    
+
+   
+
+    // Dono ko mainDiv me rakho
+    maindiv.append(
+        singerBgDiv
+       
+    );
+
+    // MainDiv ko sirf ek baar right me append karo
+    right.appendChild(maindiv);
+
+
+    // =====================
+    // Canvas
+    // =====================
+
+    let canvas = document.createElement("canvas");
+    let ctx = canvas.getContext("2d");
+
+    singerImg.onload = () => {
+
+        canvas.width = singerImg.naturalWidth;
+        canvas.height = singerImg.naturalHeight;
+
+        ctx.drawImage(
+            singerImg,
+            0,
+            0
+        );
+
+        let imageData = ctx.getImageData(
+            0,
+            0,
+            canvas.width,
+            canvas.height
+        ).data;
+
+        let r = 0;
+        let g = 0;
+        let b = 0;
+        let count = 0;
+
+        for (let i = 0; i < imageData.length; i += 40) {
+
+            r += imageData[i];
+            g += imageData[i + 1];
+            b += imageData[i + 2];
+
+            count++;
+        }
+
+        r = Math.floor(r / count);
+        g = Math.floor(g / count);
+        b = Math.floor(b / count);
+
+
+        singerBgDiv.style.background = `
+            linear-gradient(
+                to bottom,
+                rgba(${r}, ${g}, ${b}, 1),
+                rgb(41, 40, 40)
+            )
+        `;
+    };
+
+});
 
             // Right box me add
             right.appendChild(songBox);

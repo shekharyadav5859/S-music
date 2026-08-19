@@ -6,7 +6,7 @@ import { home } from "./player.js";
 artists();
 home();
 
-console.log("hello");
+
 //rightBox
 
 let right = document.querySelector(".right");
