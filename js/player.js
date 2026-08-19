@@ -1,6 +1,7 @@
 import { songData } from "../data/songbox.js";
 import { artistsdata } from "../data/artists.js";
 
+
 //home
 export function home(){
 let home=document.querySelector("#home");
@@ -12,13 +13,31 @@ home.addEventListener("click" ,()=>{
 }
 
 // artists
-
+function playsong(){
+    let audio = new Audio();
+    audio.src= e.song;
+    audio.play();
+}
 
 
 export function artists() {
-
+ let mainplay = document.querySelector(".main-play");
+ let bottomPlay = document.querySelector("#buttomplay");
     let artists = document.querySelector("#artists");
     let right = document.querySelector(".right");
+  
+let currentSong = null;
+let currentPlayIcon = null;
+
+let audio = new Audio();
+
+function playsong(song) {
+
+    audio.src = song.song;
+
+    audio.play();
+}
+   
 
     artists.addEventListener("click", () => {
 
@@ -72,9 +91,8 @@ songBox.addEventListener("click", () => {
     maindiv.classList.add("mainDiv");
 
 
-    // =====================
     // Singer Background
-    // =====================
+  
 
     let singerBgDiv = document.createElement("div");
     singerBgDiv.classList.add("singerbgdiv");
@@ -85,9 +103,9 @@ songBox.addEventListener("click", () => {
     singerBgDiv.appendChild(singerImg);
 
 
-    // =====================
+    
     // Singer Info
-    // =====================
+    
 
     let singerInfo = document.createElement("div");
     singerInfo.classList.add("singerInfo");
@@ -113,9 +131,8 @@ songBox.addEventListener("click", () => {
     singerBgDiv.appendChild(singerInfo);
 
 
-    // =====================
     // Singer Songs
-    // =====================
+  
 
     let singerNameFilter = element.name;
 
@@ -125,24 +142,272 @@ songBox.addEventListener("click", () => {
             .includes(singerNameFilter.toLowerCase())
     );
 
-    
+ //bottombox singer play for song   
+let singerbottom = document.createElement("div");
+singerbottom.classList.add("singerbottom");
+   
+//result on forecha
+
+
+
+result.forEach((e) => {
+
+    let linediv = document.createElement("div");
+    linediv.classList.add("linediv");
+
+
+
+    // IMAGE
+  
+
+    let lineimg = document.createElement("img");
+
+    lineimg.classList.add("lineimg");
+
+    lineimg.src = e.img;
+
+    linediv.appendChild(lineimg);
+
 
    
+    // SONG NAME
+   
 
-    // Dono ko mainDiv me rakho
+    let namesong = document.createElement("h3");
+
+    namesong.classList.add("namesong");
+
+    namesong.innerText = e.songname;
+
+    linediv.appendChild(namesong);
+
+
+    // DURATION
+  
+
+    let time = document.createElement("p");
+
+    time.classList.add("time");
+
+    time.innerText = e.duration;
+
+    linediv.appendChild(time);
+
+
+ 
+    // PLAY BUTTON
+  
+
+    let playbutton = document.createElement("button");
+
+    playbutton.classList.add(
+        "playbutton",
+        "ri-play-circle-fill"
+    );
+
+    linediv.appendChild(playbutton);
+
+
+   
+    // SONG CLICK
+  
+
+    linediv.addEventListener("click", () => {
+
+        // Bottom image
+        let img = document.querySelector("#bottomimg");
+
+        if (img) {
+            img.src = e.img;
+        }
+
+
+        // Bottom song name
+        let namebottom = document.querySelector("#bottomname");
+
+        if (namebottom) {
+            namebottom.innerText = e.songname;
+        }
+
+
+        // Bottom singer
+        let singerBottom = document.querySelector("#singerbottom");
+
+        if (singerBottom) {
+            singerBottom.innerText = e.singer;
+        }
+
+
+        // Duration
+        let endpoint = document.querySelector("#endpoint");
+
+        if (endpoint) {
+            endpoint.innerText = e.duration;
+        }
+
+let progressvlaue = document.querySelector(".progress-value");
+let progressBar = document.querySelector(".progress-bar");
+
+progressBar.addEventListener("click", (e) => {
+    let width = progressBar.clientWidth;
+    let clickX = e.offsetX;
+   
+
+    audio.currentTime = (clickX / width) * audio.duration;
+});
+
+
+let currenttime = document.querySelector("#startpoint");
+audio.addEventListener("timeupdate", () => {
+    let percent = (audio.currentTime / audio.duration) * 100;
+
+    progressvlaue.style.width = percent + "%";
+
+     // Current time
+    let minutes = Math.floor(audio.currentTime / 60);
+
+    let seconds = Math.floor(audio.currentTime % 60);
+
+    if (seconds < 10) {
+        seconds = "0" + seconds;
+    }
+
+    currenttime.innerText = `${minutes}:${seconds}`;
+});
+    
+        // SAME SONG
+     
+
+        if (currentSong === e) {
+
+            if (audio.paused) {
+
+                audio.play();
+
+                playbutton.classList.remove(
+                    "ri-play-circle-fill"
+                );
+
+                playbutton.classList.add(
+                    "ri-pause-circle-fill"
+                );
+
+            } else {
+
+                audio.pause();
+
+                playbutton.classList.remove(
+                    "ri-pause-circle-fill"
+                );
+
+                playbutton.classList.add(
+                    "ri-play-circle-fill"
+                );
+            }
+
+            return;
+        }
+
+
+       
+        // OLD SONG RESET
+       
+
+        if (currentPlayIcon) {
+
+            currentPlayIcon.classList.remove(
+                "ri-pause-circle-fill"
+            );
+
+            currentPlayIcon.classList.add(
+                "ri-play-circle-fill"
+            );
+        }
+
+
+       
+        // NEW SONG
+       
+
+        currentSong = e;
+
+        currentPlayIcon = playbutton;
+
+
+        audio.src = e.song;
+
+        audio.play();
+
+
+        playbutton.classList.remove(
+            "ri-play-circle-fill"
+        );
+
+        playbutton.classList.add(
+            "ri-pause-circle-fill"
+        );
+
+
+        // Bottom play button
+        let bottomPlay = document.querySelector("#buttomplay");
+
+        if (bottomPlay) {
+
+            bottomPlay.classList.remove(
+                "ri-play-fill"
+            );
+
+            bottomPlay.classList.add(
+                "ri-pause-fill"
+            );
+        }
+
+    });
+
+
+  
+    // SONG FINISHED
+   
+
+    audio.addEventListener("ended", () => {
+
+        if (currentPlayIcon === playbutton) {
+
+            playbutton.classList.remove(
+                "ri-pause-circle-fill"
+            );
+
+            playbutton.classList.add(
+                "ri-play-circle-fill"
+            );
+
+            currentSong = null;
+
+            currentPlayIcon = null;
+        }
+
+    });
+
+
+    singerbottom.appendChild(linediv);
+
+});
+
+
+    //  mainDiv
     maindiv.append(
         singerBgDiv
+      ,singerbottom
+
        
     );
 
-    // MainDiv ko sirf ek baar right me append karo
+    
     right.appendChild(maindiv);
 
-
-    // =====================
+    
+    
     // Canvas
-    // =====================
-
     let canvas = document.createElement("canvas");
     let ctx = canvas.getContext("2d");
 
@@ -198,6 +463,32 @@ songBox.addEventListener("click", () => {
             right.appendChild(songBox);
         });
     });
+
+
+        mainplay.addEventListener("click", () => {
+
+    if (!currentSong) return;
+
+    if (audio.paused) {
+        audio.play();
+
+        currentPlayIcon.classList.remove("ri-play-circle-fill");
+        currentPlayIcon.classList.add("ri-pause-circle-fill");
+
+        bottomPlay.classList.remove("ri-play-fill");
+        bottomPlay.classList.add("ri-pause-fill");
+
+    } else {
+        audio.pause();
+
+        currentPlayIcon.classList.remove("ri-pause-circle-fill");
+        currentPlayIcon.classList.add("ri-play-circle-fill");
+
+        bottomPlay.classList.remove("ri-pause-fill");
+        bottomPlay.classList.add("ri-play-fill");
+    }
+});
+
 }
 
 

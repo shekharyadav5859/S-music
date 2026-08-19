@@ -13,8 +13,8 @@ let right = document.querySelector(".right");
 let songcheck = false;
 
 // bottombutton
-let mainplay = document.querySelector(".main-play");
-let bottomPlay = document.querySelector("#buttomplay");
+ let mainplay = document.querySelector(".main-play");
+ let bottomPlay = document.querySelector("#buttomplay");
 
 //audio
 let audio = new Audio();
@@ -175,10 +175,24 @@ progressBar.addEventListener("click", (e) => {
     audio.currentTime = (clickX / width) * audio.duration;
 });
 
+let currenttime = document.querySelector("#startpoint");
+
 audio.addEventListener("timeupdate", () => {
     let percent = (audio.currentTime / audio.duration) * 100;
 
     progressvlaue.style.width = percent + "%";
+
+
+     // Current time
+    let minutes = Math.floor(audio.currentTime / 60);
+
+    let seconds = Math.floor(audio.currentTime % 60);
+
+    if (seconds < 10) {
+        seconds = "0" + seconds;
+    }
+
+    currenttime.innerText = `${minutes}:${seconds}`;
 });
 
 //songPlay and pause
@@ -217,7 +231,8 @@ right.appendChild(songBox);
 });
 
 //mainplay
-mainplay.addEventListener("click", () => {
+
+    mainplay.addEventListener("click", () => {
 
     if (!currentSong) return;
 
@@ -240,6 +255,31 @@ mainplay.addEventListener("click", () => {
         bottomPlay.classList.add("ri-play-fill");
     }
 });
+
+
+// mainplay.addEventListener("click", () => {
+
+//     if (!currentSong) return;
+
+//     if (audio.paused) {
+//         audio.play();
+
+//         currentPlayIcon.classList.remove("ri-play-circle-fill");
+//         currentPlayIcon.classList.add("ri-pause-circle-fill");
+
+//         bottomPlay.classList.remove("ri-play-fill");
+//         bottomPlay.classList.add("ri-pause-fill");
+
+//     } else {
+//         audio.pause();
+
+//         currentPlayIcon.classList.remove("ri-pause-circle-fill");
+//         currentPlayIcon.classList.add("ri-play-circle-fill");
+
+//         bottomPlay.classList.remove("ri-pause-fill");
+//         bottomPlay.classList.add("ri-play-fill");
+//     }
+// });
 
 
 //---------------------------------bottomBox-----------------------------------------//

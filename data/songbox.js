@@ -47,7 +47,7 @@ export let songData = [
             id: 5,
         song: "assets/song/295 Moosetape 128 Kbps.mp3",
         img: "assets/photo/e.jpg",
-        songname: "Ankhon Se Tune Kya Kiya",
+        songname: "295",
         singer: " Sidhu Moosewala The Legend",
         duration: "4:30",
          link:false,
