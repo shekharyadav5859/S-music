@@ -1,10 +1,12 @@
 import { songData } from "../data/songbox.js";
 import { artists  } from "./player.js";
-import { home } from "./player.js";
+import { home } from "./home.js";
+import { input } from "./serach.js";
 
 
 artists();
 home();
+input();
 
 
 //rightBox
@@ -257,29 +259,8 @@ right.appendChild(songBox);
 });
 
 
-// mainplay.addEventListener("click", () => {
+        
 
-//     if (!currentSong) return;
-
-//     if (audio.paused) {
-//         audio.play();
-
-//         currentPlayIcon.classList.remove("ri-play-circle-fill");
-//         currentPlayIcon.classList.add("ri-pause-circle-fill");
-
-//         bottomPlay.classList.remove("ri-play-fill");
-//         bottomPlay.classList.add("ri-pause-fill");
-
-//     } else {
-//         audio.pause();
-
-//         currentPlayIcon.classList.remove("ri-pause-circle-fill");
-//         currentPlayIcon.classList.add("ri-play-circle-fill");
-
-//         bottomPlay.classList.remove("ri-pause-fill");
-//         bottomPlay.classList.add("ri-play-fill");
-//     }
-// });
 
 
 //---------------------------------bottomBox-----------------------------------------//
