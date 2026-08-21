@@ -110,4 +110,59 @@ export let songData = [
          like:false,
           play:false,
         },
+
+            {
+            id: 11,
+        song: "assets/song/O Mere Dil Ke Chain Mere Jeevan Saathi 128 Kbps.mp3",
+        img: "assets/photo/images.jpg",
+        songname: "O Mere Dil Ke Chain",
+        singer: "Kishore Kumar",
+        duration: "4:36",
+         like:false,
+          play:false,
+        },
+
+          {
+            id: 12,
+        song: "assets/song/Desi Kalakaar Yo Yo Honey Singh 128 Kbps.mp3",
+        img: "assets/photo/Desi-Kalakaar-Yo-Yo-Honey-Singh-500-500.jpg",
+        songname: "Desi Kalakaar",
+        singer: "Yo Yo Honey Singh",
+        duration: "4:18",
+         like:false,
+          play:false,
+        },
+
+          {
+            id: 13,
+        song: "assets/song/Suraj Hua Maddham K3g 128 Kbps.mp3",
+        img: "assets/photo/suraj-hua-maddham-k3g-500-500.jpg",
+        songname: " Suraj Hua Maddham",
+        singer: "Sonu Nigam, Alka Yagnik",
+        duration: "7:07",
+         like:false,
+          play:false,
+        },
+        
+      {
+            id: 14,
+        song: "assets/song/Piya Tu Ab To Aaja Caravan 128 Kbps.mp3",
+        img: "assets/photo/images (1).jpg",
+        songname: "Piya Tu Ab To Aaja",
+        singer: "R.D. Burman, Asha Bhosle",
+        duration: "5:26",
+         like:false,
+          play:false,
+        },
+       {
+            id: 15,
+        song: "assets/song/Kaise Hua Kabir Singh 128 Kbps.mp3",
+        img: "assets/photo/kese hua.jpg",
+        songname: "kaise Hua",
+        singer: "Vishal Mishra",
+        duration: "3:45",
+         like:false,
+          play:false,
+        },
+        
 ]

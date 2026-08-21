@@ -236,6 +236,57 @@ audio.addEventListener("timeupdate", () => {
 
 
 
+// Canvas
+let canvas = document.createElement("canvas");
+let ctx = canvas.getContext("2d");
+
+img.onload = () => {
+
+    canvas.width = img.naturalWidth;
+    canvas.height = img.naturalHeight;
+
+    ctx.drawImage(
+        img,
+        0,
+        0
+    );
+
+    let imageData = ctx.getImageData(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    ).data;
+
+    let r = 0;
+    let g = 0;
+    let b = 0;
+    let count = 0;
+
+    // RGBA = 4 values per pixel
+    for (let i = 0; i < imageData.length; i += 40) {
+
+        r += imageData[i];
+        g += imageData[i + 1];
+        b += imageData[i + 2];
+
+        count++;
+    }
+
+    r = Math.floor(r / count);
+    g = Math.floor(g / count);
+    b = Math.floor(b / count);
+
+    songBox.style.background = `
+        linear-gradient(
+            to bottom,
+            rgba(${r}, ${g}, ${b}, 1),
+            rgb(41, 40, 40)
+        )
+    `;
+};
+
+
 
 
 
@@ -275,3 +326,5 @@ right.appendChild(songBox);
 
 
 //---------------------------------bottomBox-----------------------------------------//
+
+ 

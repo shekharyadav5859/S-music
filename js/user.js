@@ -129,7 +129,10 @@ if (name === "" || pass === "") {
     localStorage.setItem("userData", JSON.stringify(userData));
 
     
-   
+    //userlogo change
+ let logo =document.querySelector(".ri-user-3-line");
+ logo.style.color = "green";
+ 
    let messge = document.createElement("button");
    messge.classList.add("messge");
  

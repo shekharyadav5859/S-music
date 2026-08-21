@@ -319,6 +319,7 @@ body {
 /* IMAGE */
 .imgsong {
      position: relative;
+    
 
     width: 100%;
     height: 230px;
@@ -335,12 +336,13 @@ body {
       width: 100%;
     height: 100%;
 
-     object-fit: cover;
+     object-fit: contain;
     object-position: 50% 10%;
 
     display: block;
 
     transition: 0.4s;
+    margin-top: 3px;
 }
 
 .song-box:hover .imgsong img {
