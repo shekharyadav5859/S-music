@@ -89,16 +89,89 @@
 /* Button */
 .button {
     height: 45px;
-    width: 100px;
+    width: 150px;
 
     cursor: pointer;
 
     border: none;
     border-radius: 8px;
+    margin-top: 10px;
 }
+
 
 
 /* Hide */
 .displaynone {
     display: none;
+}
+
+.login{
+     height: 45px;
+    width: 150px;
+
+  cursor: pointer;
+
+    border: none;
+    border-radius: 8px;
+     margin-top: 0px; 
+}
+
+.alerttext {
+    font-family: Arial, sans-serif;
+    width: 250px;
+    margin-top: 20px;
+    font-size: 14px;
+    text-align: center;
+    line-height: 20px;
+     border-radius: 8px;
+     background: #1f2937;
+    color: #eccb47;
+    border: 1px solid #374151;
+    font-size:13px;
+
+   
+}
+.messge{
+  height: 45px;
+     font-family: Arial, sans-serif;
+    width: 250px;
+    margin-top: 20px;
+    font-size: 14px;
+    text-align: center;
+    line-height: 20px;
+     border-radius: 8px;
+     background: #FFF;
+    color: #06f522;
+    border: 1px solid #33f702;
+    font-size:13px;
+}
+.blurcontent > *:not(.user) {
+    filter: blur(4px);
+    transition: filter 0.3s ease;
+}
+
+@media (max-width: 1250px ) and (min-width:750px) {
+    .user{
+         
+    position: absolute;
+    top: 300px;
+    }
+
+}
+
+@media (max-width:749px) and (min-width:300px){
+
+     .user{
+         
+    position: absolute;
+    top: 120px;
+    height: 450px;
+    width: 270px;
+    margin-left: 30px;
+
+    }
+    .messge{
+        width:200px;
+        height: 35px;
+    }
 }
