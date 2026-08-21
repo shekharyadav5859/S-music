@@ -8,7 +8,7 @@ export function user() {
     //usermainbox
     user.addEventListener("click", () => {
 
-    // Right content ko blur karo
+    // Right content  blur 
     right.classList.add("blurcontent");
         let userdiv = document.createElement("div");
         userdiv.classList.add("user");
@@ -16,7 +16,7 @@ export function user() {
         // Remove button
         let remove = document.createElement("div");
         remove.classList.add("remove");
-        remove.innerText = "+";
+        remove.innerText = "×";
 
         remove.addEventListener("click", () => {
             userdiv.remove();
@@ -122,6 +122,7 @@ if (name === "" || pass === "") {
     };
     // Array push
     userData.push(newUser);
+    console.log(userData);
     // localStorage me save
     localStorage.setItem("userData", JSON.stringify(userData));
 
