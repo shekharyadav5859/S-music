@@ -2,16 +2,32 @@ import { songData } from "../data/songbox.js";
 import { artists  } from "./player.js";
 import { home } from "./home.js";
 import { input } from "./serach.js";
+import { setting } from "./setting.js";
+import { user } from "./user.js";
+import { userData } from "./user.js";
+
+
+
+   
+
+let arr =[];
+arr.push(1);
+console.log(arr[0]);
+ 
+arr=[]
 
 
 artists();
 home();
 input();
 
+user();
+
+
 
 //rightBox
 
-let right = document.querySelector(".right");
+ let right = document.querySelector(".right");
 let songcheck = false;
 
 // bottombutton
