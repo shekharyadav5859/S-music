@@ -71,6 +71,7 @@
     box-sizing: border-box;
 
     margin-bottom: 15px;
+    background-color: #FFF;
 }
 
 
@@ -81,7 +82,7 @@
 
     padding: 0 10px;
     box-sizing: border-box;
-
+    background-color: #FFF;
     margin-bottom: 20px;
 }
 

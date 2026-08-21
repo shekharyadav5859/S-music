@@ -94,6 +94,8 @@ alerttext.innerText = "If you haven't registered yet, please sign up. Otherwise,
 
 
 
+
+
 // button click wroking
 button.addEventListener("click", () => {
  let name = userName.value.trim();
@@ -127,8 +129,7 @@ if (name === "" || pass === "") {
     localStorage.setItem("userData", JSON.stringify(userData));
 
     
-   login.style.color ="#06f522";
-   login.style.border="1px solid #33f702"; 
+   
    let messge = document.createElement("button");
    messge.classList.add("messge");
  
@@ -151,6 +152,9 @@ maintext.innerText = imguser.innerText;
        
 
 
+
+
+
 //login click working
 login.addEventListener("click" ,()=>{
  let name = userName.value.trim();
@@ -170,7 +174,10 @@ return u.Password ==pass && u.userName == name;
  // First letter
  imguser.innerText =user.userName.charAt(0).toUpperCase();
  login.style.backgroundColor = "green";
-//right.classList.remove("blurcontent");
+
+ //userlogo change
+ let logo =document.querySelector(".ri-user-3-line");
+ logo.style.color = "green";
 
     } else {
  
