@@ -121,6 +121,11 @@ if (name === "" || pass === "") {
     }
  // First letter
     imguser.innerText = name.charAt(0).toUpperCase();
+
+    userData.forEach(u => {
+    u.vist = false;
+});
+
  // New user object
     let newUser = {
         id: userData.length + 1,
@@ -134,10 +139,11 @@ if (name === "" || pass === "") {
 
     };
     // Array push
-    userData.push(newUser);
-    console.log(userData);
-    // localStorage me save
-    localStorage.setItem("userData", JSON.stringify(userData));
+   userData.push(newUser);
+
+localStorage.setItem(
+    "userData",
+    JSON.stringify(userData));
 
     
     //userlogo change
