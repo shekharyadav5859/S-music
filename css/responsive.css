@@ -104,6 +104,12 @@
     .left i {
         font-size: 22px;
     }
+    .bottomname{
+        
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    }
 
 
 

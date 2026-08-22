@@ -146,17 +146,14 @@ result.forEach((e) => {
     let linediv = document.createElement("div");
     linediv.classList.add("linediv");
 
-
+     console.log(linediv);
 
     // IMAGE
   
 
     let lineimg = document.createElement("img");
-
     lineimg.classList.add("lineimg");
-
     lineimg.src = e.img;
-
     linediv.appendChild(lineimg);
 
 
@@ -165,12 +162,10 @@ result.forEach((e) => {
    
 
     let namesong = document.createElement("h3");
-
     namesong.classList.add("namesong");
-
     namesong.innerText = e.songname;
-
     linediv.appendChild(namesong);
+    console.log(namesong.innerText);
 
 
     // DURATION

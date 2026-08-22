@@ -4,8 +4,8 @@ import { home } from "./home.js";
 import { input } from "./serach.js";
 import { setting } from "./setting.js";
 import { user } from "./user.js";
-
-
+import { heartWorking } from "./likesong.js";
+import { likesong } from "./likesong.js";
 
 
    
@@ -17,6 +17,7 @@ artists();
 home();
 input();
 user();
+likesong();
 
 
 
@@ -86,31 +87,14 @@ songBox.appendChild(artistname);
 //songBottom
 let songBottom = document.createElement("div");
 songBottom.classList.add("song-bottom");
+
+
 //heart in songBottom
-let heart = document.createElement("i");
+ let heart = document.createElement("i");
 heart.classList.add("ri-heart-line");
 songBottom.appendChild(heart);
+heartWorking(heart ,element);
 
-// heartworking
-
-heart.addEventListener("click", () => {
-
-   if (element.like === false) {
-    element.like = true;
-
-    heart.classList.remove("ri-heart-line");
-    heart.classList.add("ri-heart-fill");
-    heart.classList.add("like");
-
-} else {
-    element.like = false;
-
-    heart.classList.remove("ri-heart-fill");
-    heart.classList.add("ri-heart-line");
-    heart.classList.remove("like");
-}
-
-});
 
 
 // More icon
@@ -237,54 +221,54 @@ audio.addEventListener("timeupdate", () => {
 
 
 // Canvas
-let canvas = document.createElement("canvas");
-let ctx = canvas.getContext("2d");
+// let canvas = document.createElement("canvas");
+// let ctx = canvas.getContext("2d");
 
-img.onload = () => {
+// img.onload = () => {
 
-    canvas.width = img.naturalWidth;
-    canvas.height = img.naturalHeight;
+//     canvas.width = img.naturalWidth;
+//     canvas.height = img.naturalHeight;
 
-    ctx.drawImage(
-        img,
-        0,
-        0
-    );
+//     ctx.drawImage(
+//         img,
+//         0,
+//         0
+//     );
 
-    let imageData = ctx.getImageData(
-        0,
-        0,
-        canvas.width,
-        canvas.height
-    ).data;
+//     let imageData = ctx.getImageData(
+//         0,
+//         0,
+//         canvas.width,
+//         canvas.height
+//     ).data;
 
-    let r = 0;
-    let g = 0;
-    let b = 0;
-    let count = 0;
+//     let r = 0;
+//     let g = 0;
+//     let b = 0;
+//     let count = 0;
 
-    // RGBA = 4 values per pixel
-    for (let i = 0; i < imageData.length; i += 40) {
+//     // RGBA = 4 values per pixel
+//     for (let i = 0; i < imageData.length; i += 40) {
 
-        r += imageData[i];
-        g += imageData[i + 1];
-        b += imageData[i + 2];
+//         r += imageData[i];
+//         g += imageData[i + 1];
+//         b += imageData[i + 2];
 
-        count++;
-    }
+//         count++;
+//     }
 
-    r = Math.floor(r / count);
-    g = Math.floor(g / count);
-    b = Math.floor(b / count);
+//     r = Math.floor(r / count);
+//     g = Math.floor(g / count);
+//     b = Math.floor(b / count);
 
-    songBox.style.background = `
-        linear-gradient(
-            to bottom,
-            rgba(${r}, ${g}, ${b}, 1),
-            rgb(41, 40, 40)
-        )
-    `;
-};
+//     songBox.style.background = `
+//         linear-gradient(
+//             to bottom,
+//             rgba(${r}, ${g}, ${b}, 1),
+//             rgb(41, 40, 40)
+//         )
+//     `;
+// };
 
 
 

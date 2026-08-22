@@ -1,12 +1,16 @@
 
 
-
+export let userData = JSON.parse(localStorage.getItem("userData")) || [];
 export function user() {
     let right = document.querySelector(".right");
     let user = document.querySelector("#user");
+    let bottom = document.querySelector(".music-player");
 
     //usermainbox
     user.addEventListener("click", () => {
+//
+
+bottom.style.display = "none";
 
     // Right content  blur 
     right.classList.add("blurcontent");
@@ -20,7 +24,8 @@ export function user() {
 
         remove.addEventListener("click", () => {
             userdiv.remove();
-              right.classList.remove("blurcontent");
+            right.classList.remove("blurcontent");
+            bottom.style.display="flex";
         });
 
         userdiv.appendChild(remove);
@@ -67,7 +72,8 @@ alerttext.innerText = "If you haven't registered yet, please sign up. Otherwise,
 
 
 // localStorage 
-let userData = JSON.parse(localStorage.getItem("userData")) || [];
+//let userData = JSON.parse(localStorage.getItem("userData")) || [];
+//localStorage.removeItem("userData");
 
 
 //hover effect on button of singup
@@ -120,7 +126,12 @@ if (name === "" || pass === "") {
         id: userData.length + 1,
         userName: name,
         Password: pass,
-        vist: true
+        vist: true ,
+        like:[],
+        playlist:[],
+        library:[]
+         
+
     };
     // Array push
     userData.push(newUser);
@@ -170,6 +181,7 @@ let user = userData.find((u)=>{
 return u.Password ==pass && u.userName == name;
 })  
 
+console.log(user);
   if (user) {
   alerttext.innerText = "Login successful!";
 // ProfileName
@@ -181,6 +193,10 @@ return u.Password ==pass && u.userName == name;
  //userlogo change
  let logo =document.querySelector(".ri-user-3-line");
  logo.style.color = "green";
+            userdiv.style.display = "none";
+            right.classList.remove("blurcontent");
+            bottom.style.display="flex";
+//console.log(userData);
 
     } else {
  
