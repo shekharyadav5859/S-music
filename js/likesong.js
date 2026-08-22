@@ -1,130 +1,257 @@
 import { userData } from "./user.js";
 
 
-export function likesong(){
-let logo = document.querySelector(".ri-user-3-line");    
-let like = document.querySelector("#likesong");
-let right = document.querySelector(".right");
 
-like.addEventListener("click", () => {
 
-   // Login check
-    if (logo.style.color !== "green") {
-        alert("Please Login or SignUp");
-        return;
+export function likesong() {
+    let logo = document.querySelector(".ri-user-3-line");
+    let like = document.querySelector("#likesong");
+    let right = document.querySelector(".right");
+    let bottomPlay = document.querySelector("#buttomplay");
+
+    let currentSong = null;
+    let currentPlayIcon = null;
+    let audio = new Audio();
+
+    if (bottomPlay) {
+        bottomPlay.addEventListener("click", () => {
+            if (!currentSong) return;
+
+            if (audio.paused) {
+                audio.play();
+
+                bottomPlay.classList.remove("ri-play-fill");
+                bottomPlay.classList.add("ri-pause-fill");
+
+                if (currentPlayIcon) {
+                    currentPlayIcon.classList.remove("ri-play-circle-fill");
+                    currentPlayIcon.classList.add("ri-pause-circle-fill");
+                }
+            } else {
+                audio.pause();
+
+                bottomPlay.classList.remove("ri-pause-fill");
+                bottomPlay.classList.add("ri-play-fill");
+
+                if (currentPlayIcon) {
+                    currentPlayIcon.classList.remove("ri-pause-circle-fill");
+                    currentPlayIcon.classList.add("ri-play-circle-fill");
+                }
+            }
+        });
     }
 
-    
+    let progressValue = document.querySelector(".progress-value");
+    let progressBar = document.querySelector(".progress-bar");
+    let currentTime = document.querySelector("#startpoint");
+
+    if (progressBar) {
+        progressBar.addEventListener("click", (event) => {
+            if (!audio.duration) return;
+
+            let width = progressBar.clientWidth;
+            let clickX = event.offsetX;
+
+            audio.currentTime = (clickX / width) * audio.duration;
+        });
+    }
+
+    audio.addEventListener("timeupdate", () => {
+        if (!audio.duration) return;
+
+        let percent = (audio.currentTime / audio.duration) * 100;
+
+        if (progressValue) {
+            progressValue.style.width = percent + "%";
+        }
+
+        let minutes = Math.floor(audio.currentTime / 60);
+        let seconds = Math.floor(audio.currentTime % 60);
+
+        if (seconds < 10) {
+            seconds = "0" + seconds;
+        }
+
+        if (currentTime) {
+            currentTime.innerText = `${minutes}:${seconds}`;
+        }
+    });
+
+    audio.addEventListener("ended", () => {
+        if (bottomPlay) {
+            bottomPlay.classList.remove("ri-pause-fill");
+            bottomPlay.classList.add("ri-play-fill");
+        }
+
+        if (currentPlayIcon) {
+            currentPlayIcon.classList.remove("ri-pause-circle-fill");
+            currentPlayIcon.classList.add("ri-play-circle-fill");
+        }
+    });
+
+    like.addEventListener("click", () => {
+        if (logo.style.color !== "green") {
+            alert("Please Login or SignUp");
+            return;
+        }
+
         right.innerHTML = "";
-let mdiv = document.createElement("div");
-mdiv.classList.add("mdiv");
 
+        let mdiv = document.createElement("div");
+        mdiv.classList.add("mdiv");
 
-  let likediv = document.createElement("div");
-  likediv.classList.add("likediv");
-// heartbox
-let liketop = document.createElement("div");
-liketop.classList.add("liketop");
-//heart
-let heart =document.createElement("p");
-heart.classList.add("likeheart");
-heart.innerText ="♡";
-liketop.appendChild(heart);
+        let likediv = document.createElement("div");
+        likediv.classList.add("likediv");
 
-//text
-let liketext  = document.createElement("div");
-liketext.classList.add("liketext");
-//p
-let p = document.createElement("p");
-p.classList.add("likep");
-p.innerText ="Playlist";
-liketext.appendChild(p);
-//h like
-let h = document.createElement("h1");
-h.classList.add("likeh");
-h.innerText ="Liked Songs"
-liketext.appendChild(h);
-//name
- let curr = userData.find(v => v.vist === true);
-let n = document.createElement("h1");
-n.classList.add("liken");
-n.innerHTML =curr.userName;
-liketext.appendChild(n);
-  
-//two div 
-likediv.appendChild(liketop);
-likediv.appendChild(liketext);
+        let liketop = document.createElement("div");
+        liketop.classList.add("liketop");
 
+        let heart = document.createElement("p");
+        heart.classList.add("likeheart");
+        heart.innerText = "♡";
+        liketop.appendChild(heart);
 
-//div no two main file
-let likemain = document.createElement("div");
-likemain.classList.add("likemain");
+        let liketext = document.createElement("div");
+        liketext.classList.add("liketext");
 
+        let p = document.createElement("p");
+        p.classList.add("likep");
+        p.innerText = "Playlist";
+        liketext.appendChild(p);
 
-curr.like.forEach((e)=>{
-    let likes = document.createElement("div");
-    likes.classList.add("likes");
+        let h = document.createElement("h1");
+        h.classList.add("likeh");
+        h.innerText = "Liked Songs";
+        liketext.appendChild(h);
 
-    //img
-    let likeimg = document.createElement("img");
-    likeimg.classList.add("likeimg");
-    likeimg.src = e.img;
-    likes.appendChild(likeimg);
+        let curr = userData.find(v => v.vist === true);
 
-    //namesong
-      let likename = document.createElement("p");
-    likename.classList.add("likename");
-    likename.innerText = e.songname;
-    likes.appendChild(likename);
-    console.log(likename.innerText);
+        if (!curr) {
+            console.log("Current user not found");
+            alert("Please login again");
+            return;
+        }
 
-      //durestion
-      let likelen = document.createElement("p");
-    likelen.classList.add("likelen");
-    likelen.innerText = e.duration;
-    likes.appendChild(likelen);
-   
-    //button
-      let likebut = document.createElement("button");
-    likebut.classList.add(
-        "likebut",
-        "ri-play-circle-fill"
-    );
-    likes.appendChild(likebut);
+        if (!curr.like) {
+            curr.like = [];
+        }
 
-    //play
+        let n = document.createElement("h1");
+        n.classList.add("liken");
+        n.innerText = curr.userName;
+        liketext.appendChild(n);
 
+        likediv.appendChild(liketop);
+        likediv.appendChild(liketext);
 
+        let likemain = document.createElement("div");
+        likemain.classList.add("likemain");
 
+        curr.like.forEach((song) => {
+            let likes = document.createElement("div");
+            likes.classList.add("likes");
 
-    likemain.appendChild(likes);
+            let likeimg = document.createElement("img");
+            likeimg.classList.add("likeimg");
+            likeimg.src = song.img;
+            likes.appendChild(likeimg);
 
-})
+            let likename = document.createElement("p");
+            likename.classList.add("likename");
+            likename.innerText = song.songname;
+            likes.appendChild(likename);
 
+            let likelen = document.createElement("p");
+            likelen.classList.add("likelen");
+            likelen.innerText = song.duration;
+            likes.appendChild(likelen);
 
+            let likebut = document.createElement("button");
+            likebut.classList.add(
+                "likebut",
+                "ri-play-circle-fill"
+            );
+            likes.appendChild(likebut);
 
+            likes.addEventListener("click", () => {
+                let img = document.querySelector("#bottomimg");
 
+                if (img) {
+                    img.src = song.img;
+                }
 
-mdiv.appendChild(likediv);
-mdiv.appendChild(likemain);
-right.appendChild(mdiv);
-});
+                let nameBottom = document.querySelector("#bottomname");
 
+                if (nameBottom) {
+                    nameBottom.innerText = song.songname;
+                }
 
+                let singerBottom = document.querySelector("#singerbottom");
 
+                if (singerBottom) {
+                    singerBottom.innerText = song.singer;
+                }
 
+                let endpoint = document.querySelector("#endpoint");
 
+                if (endpoint) {
+                    endpoint.innerText = song.duration;
+                }
 
+                if (currentSong === song) {
+                    if (audio.paused) {
+                        audio.play();
 
+                        likebut.classList.remove("ri-play-circle-fill");
+                        likebut.classList.add("ri-pause-circle-fill");
 
+                        if (bottomPlay) {
+                            bottomPlay.classList.remove("ri-play-fill");
+                            bottomPlay.classList.add("ri-pause-fill");
+                        }
+                    } else {
+                        audio.pause();
 
+                        likebut.classList.remove("ri-pause-circle-fill");
+                        likebut.classList.add("ri-play-circle-fill");
 
+                        if (bottomPlay) {
+                            bottomPlay.classList.remove("ri-pause-fill");
+                            bottomPlay.classList.add("ri-play-fill");
+                        }
+                    }
 
+                    return;
+                }
 
+                if (currentPlayIcon) {
+                    currentPlayIcon.classList.remove("ri-pause-circle-fill");
+                    currentPlayIcon.classList.add("ri-play-circle-fill");
+                }
 
+                currentSong = song;
+                currentPlayIcon = likebut;
 
+                audio.src = song.song;
+                audio.play();
+
+                likebut.classList.remove("ri-play-circle-fill");
+                likebut.classList.add("ri-pause-circle-fill");
+
+                if (bottomPlay) {
+                    bottomPlay.classList.remove("ri-play-fill");
+                    bottomPlay.classList.add("ri-pause-fill");
+                }
+            });
+
+            likemain.appendChild(likes);
+        });
+
+        mdiv.appendChild(likediv);
+        mdiv.appendChild(likemain);
+        right.appendChild(mdiv);
+    });
 }
-
 //---------------------------box in heart------------------------------------//
 //songBox in heart
 export function heartWorking(heart, element) {
@@ -153,7 +280,9 @@ heart.addEventListener("click", () => {
             console.log(curr);
 
             if (curr) {
-                curr.like.push(element);
+                if (!curr.like.some(song => song.id === element.id)) {
+    curr.like.push(element);
+}
 
                 localStorage.setItem(
                     "userData",

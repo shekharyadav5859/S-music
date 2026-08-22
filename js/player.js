@@ -202,7 +202,6 @@ result.forEach((e) => {
 
         // Bottom image
         let img = document.querySelector("#bottomimg");
-
         if (img) {
             img.src = e.img;
         }

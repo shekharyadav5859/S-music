@@ -169,42 +169,65 @@ maintext.innerText = imguser.innerText;
 
 
 
-//login click working
-login.addEventListener("click" ,()=>{
- let name = userName.value.trim();
- let pass = userPass.value;
- if (name === "" || pass === "") {
+// login click working
+login.addEventListener("click", () => {
+
+    let name = userName.value.trim();
+    let pass = userPass.value;
+
+    if (name === "" || pass === "") {
         alerttext.innerText = "Please enter username and password.";
         return;
     }
-let user = userData.find((u)=>{
-return u.Password ==pass && u.userName == name;
-})  
 
-console.log(user);
-  if (user) {
-  alerttext.innerText = "Login successful!";
-// ProfileName
- maintext.innerText = user.userName.charAt(0).toUpperCase();
- // First letter
- imguser.innerText =user.userName.charAt(0).toUpperCase();
- login.style.backgroundColor = "green";
+    // Find user
+    let user = userData.find((u) => {
+        return u.Password === pass && u.userName === name;
+    });
 
- //userlogo change
- let logo =document.querySelector(".ri-user-3-line");
- logo.style.color = "green";
-            userdiv.style.display = "none";
-            right.classList.remove("blurcontent");
-            bottom.style.display="flex";
-//console.log(userData);
+    console.log(user);
+
+    if (user) {
+
+        // Sabhi users ko logout
+        userData.forEach(u => {
+            u.vist = false;
+        });
+
+        // Current user ko login
+        user.vist = true;
+
+        // Save updated data
+        localStorage.setItem(
+            "userData",
+            JSON.stringify(userData)
+        );
+
+        alerttext.innerText = "Login successful!";
+
+        // Profile name
+        maintext.innerText =
+            user.userName.charAt(0).toUpperCase();
+
+        imguser.innerText =
+            user.userName.charAt(0).toUpperCase();
+
+        login.style.backgroundColor = "green";
+
+        // User logo
+        let logo = document.querySelector(".ri-user-3-line");
+        logo.style.color = "green";
+
+        userdiv.style.display = "none";
+        right.classList.remove("blurcontent");
+        bottom.style.display = "flex";
 
     } else {
- 
+
         alerttext.innerText =
             "Invalid username or password.";
     }
-
-})
+});
 
 
 
