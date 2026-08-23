@@ -6,10 +6,10 @@ import { setting } from "./setting.js";
 import { user } from "./user.js";
 import { heartWorking } from "./likesong.js";
 import { likesong } from "./likesong.js";
-
-
+import { playlist } from "./playlist.js";
+import { addSongToPlaylist } from "./playlist.js";
    
-
+import { songplay } from "./songplay.js";
 
 
 
@@ -18,27 +18,15 @@ home();
 input();
 user();
 likesong();
+playlist();
+
 
 
 
 //rightBox
 
  let right = document.querySelector(".right");
-let songcheck = false;
 
-// bottombutton
- let mainplay = document.querySelector(".main-play");
- let bottomPlay = document.querySelector("#buttomplay");
-
-//audio
-let audio = new Audio();
-let currentSong = null;
-let currentPlayIcon = null;
-
-function playSong(element) {
-    audio.src = element.song;
-    audio.play();
-}
 
 
 songData.forEach((element) => {
@@ -66,7 +54,8 @@ songData.forEach((element) => {
 
 let play = document.createElement("i");
 
-play.classList.add("ri-play-circle-fill");
+play.classList.add( "listbutton",
+    "ri-play-circle-fill");
 
 imgSong.appendChild(play);
 
@@ -95,6 +84,14 @@ heart.classList.add("ri-heart-line");
 songBottom.appendChild(heart);
 heartWorking(heart ,element);
 
+//addplaylist
+let addplaylist = document.createElement("p");
+addplaylist.id = "playList"
+addplaylist.innerText ="+"
+songBottom.appendChild(addplaylist);
+addplaylist.addEventListener("click", () => {
+    addSongToPlaylist(element);
+});
 
 
 // More icon
@@ -135,140 +132,18 @@ more.addEventListener("click", (e) => {
 
 
 
-
+songBox.addEventListener("click", ()=>{
+    songplay(element,play);
+})
 
 
 //----------------------------------botttomBox---------------------------------------------------------//
 
-songBox.addEventListener("click",()=>{
-    let img = document.querySelector("#bottomimg");
-    img.src = element.img;
-
- //namesong
- 
-let namebottom = document.querySelector("#bottomname");
-namebottom.innerText = element.songname;
-
-//singerbottom
-
-let singerbottom = document.querySelector("#singerbottom");
-singerbottom.innerText = element.singer;
-
-
-//endpoint
-let endpoint = document.querySelector("#endpoint");
-endpoint.innerText =element.duration;
-
-// duretion
-
-let progressvlaue = document.querySelector(".progress-value");
-let progressBar = document.querySelector(".progress-bar");
-
-progressBar.addEventListener("click", (e) => {
-    let width = progressBar.clientWidth;
-    let clickX = e.offsetX;
-   
-
-    audio.currentTime = (clickX / width) * audio.duration;
-});
-
-let currenttime = document.querySelector("#startpoint");
-
-audio.addEventListener("timeupdate", () => {
-    let percent = (audio.currentTime / audio.duration) * 100;
-
-    progressvlaue.style.width = percent + "%";
-
-
-     // Current time
-    let minutes = Math.floor(audio.currentTime / 60);
-
-    let seconds = Math.floor(audio.currentTime % 60);
-
-    if (seconds < 10) {
-        seconds = "0" + seconds;
-    }
-
-    currenttime.innerText = `${minutes}:${seconds}`;
-});
-
-//songPlay and pause
- if (currentSong && currentSong !== element) {
-        audio.pause();
-
-        if (currentPlayIcon) {
-            currentPlayIcon.classList.remove("ri-pause-circle-fill");
-            currentPlayIcon.classList.add("ri-play-circle-fill");
-        }
-    }
-     currentSong = element;
-    currentPlayIcon = play;
 
 
 
-    // Naya song play
-    playSong(element);
-
-    // Current icon
-    play.classList.remove("ri-play-circle-fill");
-    play.classList.add("ri-pause-circle-fill");
-
-    bottomPlay.classList.remove("ri-play-fill");
-    bottomPlay.classList.add("ri-pause-fill");
-
-})
 
 
-
-// Canvas
-// let canvas = document.createElement("canvas");
-// let ctx = canvas.getContext("2d");
-
-// img.onload = () => {
-
-//     canvas.width = img.naturalWidth;
-//     canvas.height = img.naturalHeight;
-
-//     ctx.drawImage(
-//         img,
-//         0,
-//         0
-//     );
-
-//     let imageData = ctx.getImageData(
-//         0,
-//         0,
-//         canvas.width,
-//         canvas.height
-//     ).data;
-
-//     let r = 0;
-//     let g = 0;
-//     let b = 0;
-//     let count = 0;
-
-//     // RGBA = 4 values per pixel
-//     for (let i = 0; i < imageData.length; i += 40) {
-
-//         r += imageData[i];
-//         g += imageData[i + 1];
-//         b += imageData[i + 2];
-
-//         count++;
-//     }
-
-//     r = Math.floor(r / count);
-//     g = Math.floor(g / count);
-//     b = Math.floor(b / count);
-
-//     songBox.style.background = `
-//         linear-gradient(
-//             to bottom,
-//             rgba(${r}, ${g}, ${b}, 1),
-//             rgb(41, 40, 40)
-//         )
-//     `;
-// };
 
 
 
@@ -278,31 +153,7 @@ songBox.appendChild(songBottom);
 right.appendChild(songBox);
 });
 
-//mainplay
 
-    mainplay.addEventListener("click", () => {
-
-    if (!currentSong) return;
-
-    if (audio.paused) {
-        audio.play();
-
-        currentPlayIcon.classList.remove("ri-play-circle-fill");
-        currentPlayIcon.classList.add("ri-pause-circle-fill");
-
-        bottomPlay.classList.remove("ri-play-fill");
-        bottomPlay.classList.add("ri-pause-fill");
-
-    } else {
-        audio.pause();
-
-        currentPlayIcon.classList.remove("ri-pause-circle-fill");
-        currentPlayIcon.classList.add("ri-play-circle-fill");
-
-        bottomPlay.classList.remove("ri-pause-fill");
-        bottomPlay.classList.add("ri-play-fill");
-    }
-});
 
 
         

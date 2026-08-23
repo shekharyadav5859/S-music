@@ -1,0 +1,113 @@
+/* Main playlist container */
+.creatadiv {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+/* Heading */
+.playlist-header {
+    width: 100%;
+    margin-bottom: 20px;
+
+    color: white;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+
+/* One song line */
+.likes,  .playlistline {
+    width: 100%;
+    min-height: 70px;
+
+    box-sizing: border-box;
+
+    display: grid;
+    grid-template-columns: 55px minmax(0, 1fr) 60px 45px;
+
+    align-items: center;
+    gap: 15px;
+
+    padding: 8px 12px;
+    margin-bottom: 8px;
+
+    border-radius: 8px;
+
+    transition: background 0.2s ease;
+}
+
+
+/* Hover */
+.playlistline:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+
+/* Song image */
+.playlistimg {
+    width: 55px;
+    height: 55px;
+
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+
+/* Song name */
+.playlistnamesong {
+    margin: 0;
+
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    min-width: 0;
+}
+
+
+/* Duration */
+.playtime {
+    margin: 0;
+
+    color: #aaa;
+    font-size: 14px;
+
+    text-align: center;
+}
+
+
+/* Play button */
+.listbutton {
+    width: 40px;
+    height: 40px;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+
+    color: white;
+    font-size: 27px;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    transition: 0.2s;
+}
+
+
+/* Play button hover */
+.listbutton:hover {
+    color: #1db954;
+    transform: scale(1.1);
+}

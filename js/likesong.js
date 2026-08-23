@@ -1,7 +1,15 @@
 import { userData } from "./user.js";
+import { songplay } from "./songplay.js";
 
-
-
+export function usercheck(){
+      // Login check
+      let logo = document.querySelector(".ri-user-3-line");
+        if (logo.style.color !== "green") {
+            alert("Please Login or SignUp");
+          
+            return false;
+        }
+}
 
 export function likesong() {
     let logo = document.querySelector(".ri-user-3-line");
@@ -9,85 +17,9 @@ export function likesong() {
     let right = document.querySelector(".right");
     let bottomPlay = document.querySelector("#buttomplay");
 
-    let currentSong = null;
-    let currentPlayIcon = null;
-    let audio = new Audio();
+   
 
-    if (bottomPlay) {
-        bottomPlay.addEventListener("click", () => {
-            if (!currentSong) return;
-
-            if (audio.paused) {
-                audio.play();
-
-                bottomPlay.classList.remove("ri-play-fill");
-                bottomPlay.classList.add("ri-pause-fill");
-
-                if (currentPlayIcon) {
-                    currentPlayIcon.classList.remove("ri-play-circle-fill");
-                    currentPlayIcon.classList.add("ri-pause-circle-fill");
-                }
-            } else {
-                audio.pause();
-
-                bottomPlay.classList.remove("ri-pause-fill");
-                bottomPlay.classList.add("ri-play-fill");
-
-                if (currentPlayIcon) {
-                    currentPlayIcon.classList.remove("ri-pause-circle-fill");
-                    currentPlayIcon.classList.add("ri-play-circle-fill");
-                }
-            }
-        });
-    }
-
-    let progressValue = document.querySelector(".progress-value");
-    let progressBar = document.querySelector(".progress-bar");
-    let currentTime = document.querySelector("#startpoint");
-
-    if (progressBar) {
-        progressBar.addEventListener("click", (event) => {
-            if (!audio.duration) return;
-
-            let width = progressBar.clientWidth;
-            let clickX = event.offsetX;
-
-            audio.currentTime = (clickX / width) * audio.duration;
-        });
-    }
-
-    audio.addEventListener("timeupdate", () => {
-        if (!audio.duration) return;
-
-        let percent = (audio.currentTime / audio.duration) * 100;
-
-        if (progressValue) {
-            progressValue.style.width = percent + "%";
-        }
-
-        let minutes = Math.floor(audio.currentTime / 60);
-        let seconds = Math.floor(audio.currentTime % 60);
-
-        if (seconds < 10) {
-            seconds = "0" + seconds;
-        }
-
-        if (currentTime) {
-            currentTime.innerText = `${minutes}:${seconds}`;
-        }
-    });
-
-    audio.addEventListener("ended", () => {
-        if (bottomPlay) {
-            bottomPlay.classList.remove("ri-pause-fill");
-            bottomPlay.classList.add("ri-play-fill");
-        }
-
-        if (currentPlayIcon) {
-            currentPlayIcon.classList.remove("ri-pause-circle-fill");
-            currentPlayIcon.classList.add("ri-play-circle-fill");
-        }
-    });
+   
 
     like.addEventListener("click", () => {
         if (logo.style.color !== "green") {
@@ -173,77 +105,12 @@ export function likesong() {
             );
             likes.appendChild(likebut);
 
-            likes.addEventListener("click", () => {
-                let img = document.querySelector("#bottomimg");
-
-                if (img) {
-                    img.src = song.img;
-                }
-
-                let nameBottom = document.querySelector("#bottomname");
-
-                if (nameBottom) {
-                    nameBottom.innerText = song.songname;
-                }
-
-                let singerBottom = document.querySelector("#singerbottom");
-
-                if (singerBottom) {
-                    singerBottom.innerText = song.singer;
-                }
-
-                let endpoint = document.querySelector("#endpoint");
-
-                if (endpoint) {
-                    endpoint.innerText = song.duration;
-                }
-
-                if (currentSong === song) {
-                    if (audio.paused) {
-                        audio.play();
-
-                        likebut.classList.remove("ri-play-circle-fill");
-                        likebut.classList.add("ri-pause-circle-fill");
-
-                        if (bottomPlay) {
-                            bottomPlay.classList.remove("ri-play-fill");
-                            bottomPlay.classList.add("ri-pause-fill");
-                        }
-                    } else {
-                        audio.pause();
-
-                        likebut.classList.remove("ri-pause-circle-fill");
-                        likebut.classList.add("ri-play-circle-fill");
-
-                        if (bottomPlay) {
-                            bottomPlay.classList.remove("ri-pause-fill");
-                            bottomPlay.classList.add("ri-play-fill");
-                        }
-                    }
-
-                    return;
-                }
-
-                if (currentPlayIcon) {
-                    currentPlayIcon.classList.remove("ri-pause-circle-fill");
-                    currentPlayIcon.classList.add("ri-play-circle-fill");
-                }
-
-                currentSong = song;
-                currentPlayIcon = likebut;
-
-                audio.src = song.song;
-                audio.play();
-
-                likebut.classList.remove("ri-play-circle-fill");
-                likebut.classList.add("ri-pause-circle-fill");
-
-                if (bottomPlay) {
-                    bottomPlay.classList.remove("ri-play-fill");
-                    bottomPlay.classList.add("ri-pause-fill");
-                }
-            });
-
+        likes.addEventListener("click",()=>{
+            songplay(song ,likebut);
+        })
+            
+           
+     
             likemain.appendChild(likes);
         });
 
@@ -255,15 +122,13 @@ export function likesong() {
 //---------------------------box in heart------------------------------------//
 //songBox in heart
 export function heartWorking(heart, element) {
-let logo = document.querySelector(".ri-user-3-line");
+
 heart.addEventListener("click", () => {
 
      
     // Login check
-        if (logo.style.color !== "green") {
-            alert("Please Login or SignUp");
-            return;
-        }
+    usercheck();
+     
 
 
         // Like

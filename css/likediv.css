@@ -76,18 +76,25 @@ font-size: 20px;
 
 .likes {
     width: 100%;
-    min-height: 65px;
+    min-height: 70px;
 
-    display: flex;
+    box-sizing: border-box;
+
+    display: grid;
+    grid-template-columns: 55px minmax(0, 1fr) 60px 45px;
+
     align-items: center;
-
     gap: 15px;
-    padding: 8px 15px;
-    
+
+    padding: 8px 12px;
+    margin-bottom: 8px;
 
     border-radius: 8px;
+
+    transition: background 0.2s ease;
 }
-.likes:hover{
+
+.likes:hover {
     background-color: rgb(29, 28, 28);
 }
 
@@ -268,7 +275,7 @@ font-size: 20px;
     }
 
     .likes {
-        width: 95%;
+       
         min-height: 65px;
         padding: 5px;
         gap: 10px;
@@ -296,7 +303,7 @@ font-size: 20px;
 }
 
 
-@media (max-width: 400px) {
+@media (max-width: 300px) {
 
     .likediv {
         grid-template-columns: 80px minmax(0, 1fr);
