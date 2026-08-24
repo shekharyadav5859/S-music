@@ -1,5 +1,5 @@
 import { userData } from "./user.js";
-import { songplay } from "./songplay.js";
+import {  songplay } from "./songplay.js";
 
 export function usercheck(){
       // Login check
@@ -10,6 +10,7 @@ export function usercheck(){
             return false;
         }
 }
+
 
 export function likesong() {
     let logo = document.querySelector(".ri-user-3-line");
@@ -106,7 +107,8 @@ export function likesong() {
             likes.appendChild(likebut);
 
         likes.addEventListener("click",()=>{
-            songplay(song ,likebut);
+          songplay(song, likebut, curr.like);
+            
         })
             
            

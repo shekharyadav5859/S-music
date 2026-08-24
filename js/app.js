@@ -9,9 +9,9 @@ import { likesong } from "./likesong.js";
 import { playlist } from "./playlist.js";
 import { addSongToPlaylist } from "./playlist.js";
    
-import { songplay } from "./songplay.js";
+import { backAndForword, songplay } from "./songplay.js";
 
-
+import { volume } from "./volum.js";
 
 artists();
 home();
@@ -19,8 +19,9 @@ input();
 user();
 likesong();
 playlist();
+volume();
 
-
+backAndForword();
 
 
 //rightBox
@@ -56,7 +57,7 @@ let play = document.createElement("i");
 
 play.classList.add( "listbutton",
     "ri-play-circle-fill");
-
+play.dataset.songId = element.id;
 imgSong.appendChild(play);
 
  
@@ -131,9 +132,10 @@ more.addEventListener("click", (e) => {
 
 
 
+//backword
 
 songBox.addEventListener("click", ()=>{
-    songplay(element,play);
+    songplay(element,play ,songData);
 })
 
 

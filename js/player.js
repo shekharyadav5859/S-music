@@ -1,6 +1,6 @@
 import { songData } from "../data/songbox.js";
 import { artistsdata } from "../data/artists.js";
-import { songplay } from "./songplay.js";
+import {  songplay } from "./songplay.js";
 
 
 
@@ -182,7 +182,7 @@ result.forEach((e) => {
     // SONG CLICK
   
 linediv.addEventListener("click" ,()=>{
-    songplay(e ,playbutton);
+    songplay(e ,playbutton ,result);
 })
 
 
