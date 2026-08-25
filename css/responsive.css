@@ -99,10 +99,11 @@
     .lefticon {
         width: 45px;
         height: 45px;
+        font-size: 10px;
     }
 
     .left i {
-        font-size: 22px;
+        font-size: 10px;
     }
     .bottomname{
         
@@ -111,7 +112,15 @@
     text-overflow: ellipsis;
     }
 
+.lefticon i .lefticon {
+    font-size: 10px;
+}
 
+.lefticon:hover i,
+.lefticon:hover span {
+    color: #ffffff;
+     font-size: 12px;
+}
 
 
 
