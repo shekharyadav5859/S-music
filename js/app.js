@@ -13,6 +13,8 @@ import { backAndForword, songplay } from "./songplay.js";
 
 import { volume } from "./volum.js";
 
+import { save } from "./save.js";
+
 artists();
 home();
 input();
@@ -20,6 +22,7 @@ user();
 likesong();
 playlist();
 volume();
+
 
 backAndForword();
 
@@ -86,13 +89,15 @@ songBottom.appendChild(heart);
 heartWorking(heart ,element);
 
 //addplaylist
-let addplaylist = document.createElement("p");
-addplaylist.id = "playList"
-addplaylist.innerText ="+"
-songBottom.appendChild(addplaylist);
-addplaylist.addEventListener("click", () => {
-    addSongToPlaylist(element);
-});
+// let addplaylist = document.createElement("p");
+// addplaylist.id = "playList"
+// addplaylist.innerText ="+"
+// songBottom.appendChild(addplaylist);
+// addplaylist.addEventListener("click", () => {
+//     addSongToPlaylist(element);
+// });
+
+
 
 
 // More icon
@@ -112,11 +117,36 @@ morediv.innerHTML = `
         <span>Download</span>
     </div>
 
-    <div class="more-option info">
-        <i class="ri-information-line"></i>
-        <span>Song Info</span>
+     <div class="more-option save">   
+      <i class="ri-bookmark-line"></i>     
+        <span> save</span>
     </div>
-`;
+
+      <div class="more-option info">
+   <i class="ri-information-line"></i>
+        <span> Save</span>
+    </div>
+
+       <div class="more-option playlist">
+  <i class="ri-play-list-add-line"></i>
+        <span> Add Playlist</span>
+    </div>
+    
+   `;
+
+   
+let palylist = morediv.querySelector(".playlist");
+palylist.addEventListener("click" ,()=>{
+    addSongToPlaylist(element);
+}
+
+)
+
+ let saves = morediv.querySelector(".save");
+saves.addEventListener("click", () => {
+    save(element);
+});
+
 
 songBox.appendChild(morediv);
 

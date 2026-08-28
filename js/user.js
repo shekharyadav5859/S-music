@@ -1,6 +1,8 @@
 
 
 export let userData = JSON.parse(localStorage.getItem("userData")) || [];
+//localStorage.removeItem("userData");
+
 export function user() {
     let right = document.querySelector(".right");
     let user = document.querySelector("#user");
@@ -73,7 +75,7 @@ alerttext.innerText = "If you haven't registered yet, please sign up. Otherwise,
 
 // localStorage 
 //let userData = JSON.parse(localStorage.getItem("userData")) || [];
-//localStorage.removeItem("userData");
+
 
 
 //hover effect on button of singup
@@ -134,18 +136,16 @@ if (name === "" || pass === "") {
         vist: true ,
         like:[],
         playlist:[],
+        save:[],
         library:[]
          
 
     };
     // Array push
    userData.push(newUser);
+localStorage.setItem( "userData",JSON.stringify(userData));
 
-localStorage.setItem(
-    "userData",
-    JSON.stringify(userData));
-
-    
+    localStorage.removeItem("userData");
     //userlogo change
  let logo =document.querySelector(".ri-user-3-line");
  logo.style.color = "green";
