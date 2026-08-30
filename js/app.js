@@ -14,6 +14,7 @@ import { backAndForword, songplay } from "./songplay.js";
 import { volume } from "./volum.js";
 
 import { save } from "./save.js";
+import { library } from "./Libaray.js";
 
 artists();
 home();
@@ -22,7 +23,7 @@ user();
 likesong();
 playlist();
 volume();
-
+library();
 
 backAndForword();
 
