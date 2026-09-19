@@ -51,12 +51,15 @@ body {
     align-items: center;
 
     margin-right: 100px;
+    width:50px;
+    border:1px solid blanchedalmond;
+    border-radius: 1px;
 }
 
 #input {
-    width: 70%;
+    
     height: 55px;
-
+  width:70%;
     border: none;
     outline: none;
 
